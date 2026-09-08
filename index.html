@@ -307,15 +307,15 @@
   <p class="dek">Signup → KYC → Bank Approval, benchmarked stage by stage against published fintech and neobank onboarding data. Funding/activation is out of scope for this pass.</p>
   <div class="meta-row">
     <span><b>Scope</b> Pana Global only — US is a separate, discontinued product</span>
-    <span><b>Window</b> 2026 YTD (Jan–Sep 8) vs. full-year 2025</span>
+    <span><b>Window</b> 2026 YTD (Jan–Sep 8); trend vs. H2 2025 where noted</span>
     <span><b>Pulled</b> Sep 8, 2026</span>
   </div>
 
   <section>
     <div class="verdict-card">
-      <div class="verdict-statement">Healthy at the KYC gate — <em>what happens before it is still an open question.</em></div>
+      <div class="verdict-statement">Below industry range — <em>once you count from where users actually start.</em></div>
       <div class="verdict-body">
-        Pana Global clears identity verification at <b>64.3%</b>, near the top of the industry's typical 55–65% completion range — KYC itself is not the problem. Before that, only <b>46.1%</b> of signups ever open a KYC application — the largest single drop in the funnel by volume. No public benchmark isolates that exact step, so we genuinely don't know whether 46.1% is ahead of, in line with, or behind the market — only that it's the biggest unmeasured piece of the funnel.
+        <b>Correction from the previous version of this deck:</b> "Started KYC" was measured from Persona's own inquiry-creation event — but Pana's own product analytics show the funnel really starts earlier, when a user opens the in-app Bridge onboarding wizard (<b>71.3%</b> of signups reach that, not 46.1%). Measured from that true starting point, KYC completion — Wizard opened → Approved — runs <b>41.6%</b>, below the industry's 55–65% range. Persona's own intake-to-approval step (64.3%) looks fine in isolation, but that's not where users actually begin: ~35% of wizard opens never even become a Persona application.
       </div>
       <div class="kpi-grid">
         <div class="kpi-tile">
@@ -325,22 +325,22 @@
           <span class="chip warn">-1.5pp YoY</span>
         </div>
         <div class="kpi-tile">
-          <div class="kpi-label">Signup → Started KYC</div>
-          <div class="kpi-value">46.1%</div>
-          <div class="kpi-sub">~54% never open a KYC app</div>
+          <div class="kpi-label">Signup → Wizard opened<br>(true KYC start)</div>
+          <div class="kpi-value">71.3%</div>
+          <div class="kpi-sub">Amplitude, Bridge onboarding wizard</div>
           <span class="chip muted">No benchmark</span>
         </div>
         <div class="kpi-tile">
-          <div class="kpi-label">KYC completion<br>Started KYC → Approved</div>
-          <div class="kpi-value">64.3%</div>
+          <div class="kpi-label">KYC completion<br>Wizard opened → Approved</div>
+          <div class="kpi-value">41.6%</div>
           <div class="kpi-sub">Industry range 55–65%</div>
-          <span class="chip good">In line</span>
+          <span class="chip critical">Below range</span>
         </div>
         <div class="kpi-tile">
-          <div class="kpi-label">KYC completion, YoY<br>2025 → 2026 YTD</div>
-          <div class="kpi-value">67.2→64.3%</div>
-          <div class="kpi-sub">Still inside industry range</div>
-          <span class="chip warn">-2.9pp YoY</span>
+          <div class="kpi-label">Wizard opened → Persona<br>application created</div>
+          <div class="kpi-value">64.7%</div>
+          <div class="kpi-sub">~35% never reach Persona at all</div>
+          <span class="chip warn">Biggest internal leak</span>
         </div>
       </div>
     </div>
@@ -356,7 +356,12 @@
         <div class="funnel-figs"><div class="funnel-count">100%</div><div class="funnel-pct">baseline</div></div>
       </div>
       <div class="funnel-row">
-        <div><div class="funnel-stage-label">Started KYC</div><div class="funnel-stage-note">Persona application opened</div></div>
+        <div><div class="funnel-stage-label">Wizard opened</div><div class="funnel-stage-note">Amplitude: Bridge onboarding wizard</div></div>
+        <div class="funnel-track"><div class="funnel-fill" style="width:71.3%;">77,158</div></div>
+        <div class="funnel-figs"><div class="funnel-count">71.3%</div><div class="funnel-pct">of signups</div></div>
+      </div>
+      <div class="funnel-row">
+        <div><div class="funnel-stage-label">Persona application created</div><div class="funnel-stage-note">personainquiry record exists</div></div>
         <div class="funnel-track"><div class="funnel-fill" style="width:46.1%;">49,901</div></div>
         <div class="funnel-figs"><div class="funnel-count">46.1%</div><div class="funnel-pct">of signups</div></div>
       </div>
@@ -380,47 +385,59 @@
 
       <div class="bullet-row">
         <div class="bullet-head">
-          <div class="bullet-name">Signup <span class="arrow">→</span> Started KYC</div>
-          <div class="bullet-readout">46.1% · no external benchmark</div>
+          <div class="bullet-name">Signup <span class="arrow">→</span> Wizard opened</div>
+          <div class="bullet-readout">71.3% · no external benchmark</div>
         </div>
         <div class="bullet-track">
-          <div class="bullet-bar first" style="width:46.1%;"></div>
-          <div class="bullet-value-label" style="left:calc(46.1% + 8px);">46.1%</div>
+          <div class="bullet-bar first" style="width:71.3%;"></div>
+          <div class="bullet-value-label" style="left:calc(71.3% + 8px);">71.3%</div>
         </div>
-        <div class="bullet-foot">~54% of signups never open a KYC application — the largest raw drop in the funnel by volume. No public benchmark isolates this exact step, so this is unscored: we can't say it's above or below market, only that it's the biggest unmeasured gap.</div>
+        <div class="bullet-foot">The true entry point to KYC — measured from Amplitude, not from Persona's backend. No public benchmark isolates this exact step, so this is unscored.</div>
       </div>
 
       <div class="bullet-row">
         <div class="bullet-head">
-          <div class="bullet-name">Started KYC <span class="arrow">→</span> Approved</div>
-          <div class="bullet-readout">64.3% · industry 55–65%</div>
+          <div class="bullet-name">Wizard opened <span class="arrow">→</span> Persona application created</div>
+          <div class="bullet-readout">64.7% · no external benchmark</div>
+        </div>
+        <div class="bullet-track">
+          <div class="bullet-bar first" style="width:64.7%; background:var(--series-industry);"></div>
+          <div class="bullet-value-label" style="left:calc(64.7% + 8px); color:var(--series-industry);">64.7%</div>
+        </div>
+        <div class="bullet-foot">~35% of users who open the wizard never generate a Persona application at all — they drop mid-form, before the backend even logs an attempt. This is Pana-specific plumbing, not something any industry report isolates either, but it's the single biggest lever inside KYC.</div>
+      </div>
+
+      <div class="bullet-row">
+        <div class="bullet-head">
+          <div class="bullet-name">Wizard opened <span class="arrow">→</span> Approved <span style="font-weight:400; color:var(--text-muted);">(KYC completion)</span></div>
+          <div class="bullet-readout">41.6% · industry 55–65%</div>
         </div>
         <div class="bullet-track">
           <div class="bullet-band" style="left:55%; width:10%;"></div>
-          <div class="bullet-bar first" style="width:64.3%;"></div>
-          <div class="bullet-value-label" style="left:calc(64.3% + 8px);">64.3%</div>
+          <div class="bullet-bar first" style="width:41.6%; background:var(--series-industry);"></div>
+          <div class="bullet-value-label" style="left:calc(41.6% + 8px); color:var(--series-industry);">41.6%</div>
         </div>
-        <div class="bullet-foot">At the top of the reported range. KYC completion itself is not the problem.</div>
+        <div class="bullet-foot">This is the metric that maps to what the industry calls "KYC completion" — measured from where users actually start. Pana runs below the 55–65% range. (Measured only from Persona's own intake step instead, completion looks like 64.3% — in line with the range, but that's not where users actually begin.)</div>
       </div>
 
     </div>
   </section>
 
   <section>
-    <h2 class="section-title">KYC completion, year over year</h2>
-    <p class="section-sub">Started KYC → Approved, Pana Global, full-year comparison.</p>
+    <h2 class="section-title">KYC completion, over time</h2>
+    <p class="section-sub">Wizard opened → Approved, Pana Global. Amplitude wizard-open tracking only goes back to Jul 2025, so this compares H2 2025 to 2026 YTD — same definition both periods, different lengths.</p>
     <div class="yoy-wrap">
       <div class="yoy-bars">
         <div class="yoy-col">
-          <div class="yoy-bar dim" style="height:126px;"><span class="yoy-bar-val">67.2%</span></div>
-          <div class="yoy-year">2025</div>
+          <div class="yoy-bar dim" style="height:104px;"><span class="yoy-bar-val">47.8%</span></div>
+          <div class="yoy-year">H2 2025</div>
         </div>
         <div class="yoy-col">
-          <div class="yoy-bar" style="height:120px;"><span class="yoy-bar-val">64.3%</span></div>
+          <div class="yoy-bar" style="height:91px;"><span class="yoy-bar-val">41.6%</span></div>
           <div class="yoy-year">2026 YTD</div>
         </div>
       </div>
-      <div class="yoy-note"><b>-2.9pp YoY</b> — a slight cooling, but still comfortably inside the 55–65% industry range. Worth watching, not yet a flag.</div>
+      <div class="yoy-note"><b>-6.2pp</b> — already below the 55–65% industry range in H2 2025, and the gap has widened since. Not a one-quarter blip.</div>
     </div>
   </section>
 
@@ -433,20 +450,36 @@
         </thead>
         <tbody>
           <tr>
-            <td class="stage">Signup → Started KYC</td>
-            <td class="def">First KYC application opened after account creation</td>
-            <td class="num">46.1%</td>
+            <td class="stage">Signup → Wizard opened</td>
+            <td class="def">User opens the in-app Bridge onboarding wizard (Amplitude) — the true start of KYC</td>
+            <td class="num">71.3%</td>
             <td class="num">—</td>
             <td><span class="chip muted">No benchmark</span></td>
             <td class="src">No source isolates this exact step</td>
           </tr>
           <tr>
-            <td class="stage">Started KYC → Approved</td>
-            <td class="def">Identity verification completed and approved (Persona)</td>
+            <td class="stage">Wizard opened → Persona application created</td>
+            <td class="def">Backend creates a <code>personainquiry</code> record — the first point Persona's own system knows the user exists</td>
+            <td class="num">64.7%</td>
+            <td class="num">—</td>
+            <td><span class="chip muted">No benchmark</span></td>
+            <td class="src">Pana-specific backend step; no vendor publishes this either</td>
+          </tr>
+          <tr>
+            <td class="stage">Wizard opened → Approved <span style="color:var(--text-muted); font-weight:400;">(KYC completion)</span></td>
+            <td class="def">Identity verification completed and approved, measured from where the user actually starts</td>
+            <td class="num">41.6%</td>
+            <td class="num">~55–65%</td>
+            <td><span class="chip critical">Below range</span></td>
+            <td class="src"><a href="https://getperspective.ai/blog/fintech-customer-experience-2026-onboarding-trust-drop-off" target="_blank" rel="noopener">Perspective AI, 2026</a></td>
+          </tr>
+          <tr>
+            <td class="stage">Persona application created → Approved</td>
+            <td class="def">Same "completion" measured only from Persona's own intake step, not from the wizard</td>
             <td class="num">64.3%</td>
             <td class="num">~55–65%</td>
-            <td><span class="chip good">In line</span></td>
-            <td class="src"><a href="https://getperspective.ai/blog/fintech-customer-experience-2026-onboarding-trust-drop-off" target="_blank" rel="noopener">Perspective AI, 2026</a></td>
+            <td><span class="chip muted">Not the industry metric</span></td>
+            <td class="src">Included for continuity with the prior version of this deck</td>
           </tr>
           <tr>
             <td class="stage">Overall onboarding abandonment</td>
@@ -465,16 +498,18 @@
     <h3>Definitions &amp; data sources — Pana</h3>
     <ul>
       <li><b>Signups</b> — <code>user.createdAt</code>, Pana Global (usertype = GLOBAL), signup-month cohort.</li>
-      <li><b>Started KYC / Approved</b> — Persona (Bridge KYC) application events, cross-referenced against <code>bankapplication</code>. Metabase query <code>persona-funnel-flow</code> (Started KYC and Approved steps only — Funded/Active steps excluded from this pass by design).</li>
-      <li><b>Bank approved</b> (volume chart) — <code>bankapplication.status = 'Approved'</code>. Metabase query <code>funnel-3step</code>.</li>
+      <li><b>Wizard opened</b> — first Amplitude event of type <code>Bridge Onboarding Started</code> or <code>Viewed Onboarding Bridge Wizard</code>, per user, from <code>panaapp-16ce3.amplitude.EVENTS_396830</code>. This is t1 in Pana's own canonical KYC event table — the true first step, ahead of anything Persona's backend tracks. Query <code>diag-onboarding-wizard-started-monthly</code>.</li>
+      <li><b>Persona application created</b> — a <code>personainquiry</code> record exists for the user (BigQuery, <code>planetscale_pana.personainquiry</code>). This is t7 in the same canonical table — created by Pana's backend once the user has gone far enough into the wizard, not when they open it.</li>
+      <li><b>Approved</b> — <code>bankapplication.status = 'Approved'</code>. Metabase queries <code>funnel-3step</code> and <code>persona-funnel-flow</code> (cross-checked, agree to within 0.3%).</li>
       <li>Scope stops at approval. Funding/activation metrics are tracked separately and intentionally excluded here to keep this a pure onboarding/KYC read.</li>
-      <li>All figures pulled via BigQuery through the Metabase API, <code>panaapp-16ce3.planetscale_pana</code>, Sep 8, 2026.</li>
+      <li>All figures pulled via BigQuery through the Metabase API, <code>panaapp-16ce3.planetscale_pana</code> and <code>panaapp-16ce3.amplitude</code>, Sep 8, 2026.</li>
+      <li><b>Correction, Sep 8 2026:</b> the first version of this deck measured "Started KYC" from the Persona-application-created event (t7), because that was the earliest step the existing dashboard query (<code>persona-funnel-flow</code>) tracked. Claudia flagged that KYC should start counting from when Persona actually takes the user, which led to checking Pana's own canonical event table and finding the wizard-open event (t1) is the true start — 25pp earlier than what the deck first reported.</li>
     </ul>
     <h3>On the external benchmark figures</h3>
     <ul>
       <li>Compiled from secondary industry sources (fintech CX/CRO round-ups citing Signicat and neobank activation research), not one primary index — treat ranges as directional, not exact.</li>
       <li>Definitions vary by source (e.g. "activation" sometimes means first transaction, sometimes 5+ transactions); ranges here were matched to Pana's stage definitions as closely as the source allowed.</li>
-      <li>No external source publishes a clean "signup → started KYC" rate, so that stage is shown for internal diagnostic value only, with no scored verdict. Confirmed by a multi-pass check (own research plus independent cross-checks) against Sumsub, Alloy, Persona, Veriff, and Plaid — identity vendors define a technical "start" event (e.g. Veriff's <code>started</code>/7001, Plaid's <code>IDENTITY_VERIFICATION_START_STEP</code>), but their own funnels begin after a verification session is already created, not at account signup. That earlier handoff sits outside what any vendor or industry report measures, so it isn't a gap in this research — it's an industry-wide blind spot.</li>
+      <li>No external source publishes a clean "signup → wizard opened" rate, so that stage is shown for internal diagnostic value only, with no scored verdict. Confirmed by a multi-pass check (own research plus independent cross-checks) against Sumsub, Alloy, Persona, Veriff, and Plaid — identity vendors define a technical "start" event (e.g. Veriff's <code>started</code>/7001, Plaid's <code>IDENTITY_VERIFICATION_START_STEP</code>), but their own funnels begin after a verification session is already created, not at account signup. That earlier handoff sits outside what any vendor or industry report measures, so it isn't a gap in this research — it's an industry-wide blind spot. It's exactly why "wizard opened → approved" is the right stage to benchmark against their "KYC completion" figures — it's Pana's closest match to what vendors mean by "started."</li>
     </ul>
     <div class="sources">
       <h3>Sources</h3>
