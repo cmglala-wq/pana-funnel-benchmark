@@ -1,0 +1,487 @@
+<title>Onboarding Funnel Benchmark</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg-page: #fcfcfb;
+    --bg-card: #ffffff;
+    --bg-card-alt: #f6f5f1;
+    --border: #e4e2db;
+    --border-strong: #d3d0c6;
+    --text-primary: #101110;
+    --text-secondary: #52514e;
+    --text-muted: #85837c;
+    --series-pana: #2a78d6;
+    --series-pana-soft: rgba(42, 120, 214, 0.14);
+    --series-industry: #eb6834;
+    --series-industry-soft: rgba(235, 104, 52, 0.16);
+    --status-good-bg: #e4f6e2;
+    --status-good-fg: #0c7a0c;
+    --status-warn-bg: #fdf1d8;
+    --status-warn-fg: #8a5a04;
+    --status-critical-bg: #fbe3e3;
+    --status-critical-fg: #a3231f;
+    --status-muted-bg: #eeece5;
+    --status-muted-fg: #6b6a63;
+    --shadow-card: 0 1px 2px rgba(16, 17, 16, 0.04), 0 8px 24px -16px rgba(16, 17, 16, 0.18);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg-page: #1a1a19;
+      --bg-card: #211f1c;
+      --bg-card-alt: #29271f;
+      --border: #3a372e;
+      --border-strong: #4a4638;
+      --text-primary: #f8f7f4;
+      --text-secondary: #c3c2b7;
+      --text-muted: #8c8a80;
+      --series-pana: #3987e5;
+      --series-pana-soft: rgba(57, 135, 229, 0.20);
+      --series-industry: #d95926;
+      --series-industry-soft: rgba(217, 89, 38, 0.22);
+      --status-good-bg: #16321a;
+      --status-good-fg: #6fd06f;
+      --status-warn-bg: #3a2d10;
+      --status-warn-fg: #f0c05a;
+      --status-critical-bg: #3a1a19;
+      --status-critical-fg: #f0908d;
+      --status-muted-bg: #2c2a24;
+      --status-muted-fg: #a6a49a;
+      --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -16px rgba(0, 0, 0, 0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg-page: #1a1a19;
+    --bg-card: #211f1c;
+    --bg-card-alt: #29271f;
+    --border: #3a372e;
+    --border-strong: #4a4638;
+    --text-primary: #f8f7f4;
+    --text-secondary: #c3c2b7;
+    --text-muted: #8c8a80;
+    --series-pana: #3987e5;
+    --series-pana-soft: rgba(57, 135, 229, 0.20);
+    --series-industry: #d95926;
+    --series-industry-soft: rgba(217, 89, 38, 0.22);
+    --status-good-bg: #16321a;
+    --status-good-fg: #6fd06f;
+    --status-warn-bg: #3a2d10;
+    --status-warn-fg: #f0c05a;
+    --status-critical-bg: #3a1a19;
+    --status-critical-fg: #f0908d;
+    --status-muted-bg: #2c2a24;
+    --status-muted-fg: #a6a49a;
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -16px rgba(0, 0, 0, 0.5);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg-page);
+    color: var(--text-primary);
+    font-family: "Public Sans", -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 56px 28px 80px; }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--series-pana); }
+
+  h1.title {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(30px, 4.4vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 14px 0 10px;
+    text-wrap: balance;
+  }
+  p.dek {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 62ch;
+    margin: 0 0 6px;
+  }
+  .meta-row {
+    display: flex; flex-wrap: wrap; gap: 18px;
+    margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12px; color: var(--text-muted);
+  }
+  .meta-row b { color: var(--text-secondary); font-weight: 500; }
+
+  section { margin-top: 46px; }
+  h2.section-title {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: 21px;
+    margin: 0 0 4px;
+    letter-spacing: -0.005em;
+  }
+  p.section-sub { font-size: 13.5px; color: var(--text-muted); margin: 0 0 20px; max-width: 60ch; }
+
+  /* ---------- Verdict ---------- */
+  .verdict-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 30px 32px;
+    box-shadow: var(--shadow-card);
+  }
+  .verdict-statement {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 500;
+    line-height: 1.22;
+    max-width: 46ch;
+    text-wrap: balance;
+  }
+  .verdict-statement em {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--series-industry);
+  }
+  .verdict-body { font-size: 15px; color: var(--text-secondary); max-width: 64ch; margin-top: 14px; }
+  .verdict-body b { color: var(--text-primary); font-weight: 600; }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 26px;
+  }
+  .kpi-tile { background: var(--bg-card); padding: 18px 18px 16px; }
+  .kpi-label {
+    font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em;
+    color: var(--text-muted); font-weight: 600; min-height: 26px;
+  }
+  .kpi-value {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 27px; font-weight: 600; margin-top: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .kpi-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 6px; line-height: 1.4; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.02em;
+    padding: 3px 8px; border-radius: 20px; margin-top: 9px;
+  }
+  .chip.good { background: var(--status-good-bg); color: var(--status-good-fg); }
+  .chip.critical { background: var(--status-critical-bg); color: var(--status-critical-fg); }
+  .chip.warn { background: var(--status-warn-bg); color: var(--status-warn-fg); }
+  .chip.muted { background: var(--status-muted-bg); color: var(--status-muted-fg); }
+
+  /* ---------- Volume funnel ---------- */
+  .funnel-chart { display: flex; flex-direction: column; gap: 12px; }
+  .funnel-row { display: grid; grid-template-columns: 168px 1fr 128px; align-items: center; gap: 14px; }
+  .funnel-stage-label { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+  .funnel-stage-note { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+  .funnel-track { background: var(--bg-card-alt); border-radius: 8px; height: 34px; position: relative; overflow: hidden; border: 1px solid var(--border); }
+  .funnel-fill {
+    height: 100%; background: var(--series-pana); border-radius: 7px 3px 3px 7px;
+    display: flex; align-items: center; padding-left: 12px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; color: white; font-weight: 500;
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .funnel-figs { text-align: right; font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  .funnel-count { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+  .funnel-pct { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+  /* ---------- Bullet / benchmark rows ---------- */
+  .legend-row { display: flex; gap: 22px; margin-bottom: 18px; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--text-secondary); }
+  .legend-swatch { width: 13px; height: 13px; border-radius: 3px; flex: none; }
+  .legend-swatch.pana { background: var(--series-pana); }
+  .legend-swatch.industry { background: var(--series-industry-soft); border: 1.5px solid var(--series-industry); }
+  .legend-swatch.nodata { background: transparent; border: 1.5px dashed var(--border-strong); }
+
+  .bullet-chart { display: flex; flex-direction: column; gap: 22px; }
+  .bullet-row { }
+  .bullet-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; gap: 12px; flex-wrap: wrap; }
+  .bullet-name { font-size: 14px; font-weight: 600; }
+  .bullet-name .arrow { color: var(--text-muted); font-weight: 400; margin: 0 3px; }
+  .bullet-readout { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  .bullet-track { position: relative; height: 30px; background: var(--bg-card-alt); border: 1px solid var(--border); border-radius: 8px; }
+  .bullet-band {
+    position: absolute; top: 0; bottom: 0; background: var(--series-industry-soft);
+    border-left: 1.5px solid var(--series-industry); border-right: 1.5px solid var(--series-industry);
+  }
+  .bullet-bar {
+    position: absolute; top: 8px; bottom: 8px; left: 0;
+    background: var(--series-pana); border-radius: 0 4px 4px 0;
+    box-shadow: -2px 0 0 0 var(--bg-card-alt);
+  }
+  .bullet-bar.first { border-radius: 4px; }
+  .bullet-value-label {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 11.5px; font-weight: 600;
+    color: var(--text-primary); white-space: nowrap;
+  }
+  .bullet-foot { font-size: 11.5px; color: var(--text-muted); margin-top: 7px; }
+
+  /* ---------- Callout ---------- */
+  .callout {
+    background: var(--bg-card-alt);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--series-pana);
+    border-radius: 10px;
+    padding: 20px 24px;
+  }
+  .callout-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--series-pana); margin-bottom: 8px; }
+  .callout p { font-size: 14.5px; color: var(--text-secondary); margin: 0; max-width: 66ch; }
+  .callout p + p { margin-top: 10px; }
+  .callout b { color: var(--text-primary); }
+  .callout .fig-row { display: flex; gap: 32px; margin-top: 16px; flex-wrap: wrap; }
+  .callout .fig { }
+  .callout .fig-val { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .callout .fig-lbl { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+
+  /* ---------- YoY ---------- */
+  .yoy-wrap { display: flex; gap: 40px; align-items: flex-end; }
+  .yoy-bars { display: flex; gap: 22px; align-items: flex-end; height: 140px; }
+  .yoy-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; width: 64px; }
+  .yoy-bar { width: 40px; background: var(--series-pana); border-radius: 4px 4px 0 0; position: relative; }
+  .yoy-bar.dim { background: var(--border-strong); }
+  .yoy-bar-val { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .yoy-year { font-size: 11.5px; color: var(--text-muted); margin-top: 8px; font-family: "IBM Plex Mono", monospace; }
+  .yoy-note { font-size: 14px; color: var(--text-secondary); max-width: 34ch; }
+  .yoy-note b { color: var(--text-primary); }
+
+  /* ---------- Table ---------- */
+  .table-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; }
+  table { border-collapse: collapse; width: 100%; min-width: 680px; font-size: 13.5px; }
+  thead th {
+    text-align: left; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--text-muted); font-weight: 600; padding: 12px 16px; background: var(--bg-card-alt);
+    border-bottom: 1px solid var(--border);
+  }
+  tbody td { padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--bg-card-alt); }
+  td.stage { font-weight: 600; }
+  td.def { color: var(--text-secondary); font-size: 12.5px; max-width: 220px; }
+  td.num { font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.src { color: var(--text-muted); font-size: 12px; max-width: 200px; }
+  td.src a { color: var(--text-muted); }
+
+  /* ---------- Methodology ---------- */
+  .method {
+    font-size: 12.5px; color: var(--text-muted); border-top: 1px solid var(--border);
+    padding-top: 24px; margin-top: 56px;
+  }
+  .method h3 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); margin: 0 0 8px; }
+  .method ul { margin: 0 0 18px; padding-left: 18px; }
+  .method li { margin-bottom: 5px; }
+  .method a { color: var(--text-muted); }
+  .method .sources { margin-top: 0; }
+
+  @media (max-width: 640px) {
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .funnel-row { grid-template-columns: 1fr; gap: 6px; }
+    .funnel-figs { text-align: left; }
+    .yoy-wrap { flex-direction: column; gap: 20px; }
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<div class="wrap">
+
+  <div class="eyebrow"><span class="dot"></span>PANA · GROWTH &amp; ONBOARDING</div>
+  <h1 class="title">Is the onboarding funnel healthy against the rest of fintech?</h1>
+  <p class="dek">Signup → KYC → Bank Approval, benchmarked stage by stage against published fintech and neobank onboarding data. Funding/activation is out of scope for this pass.</p>
+  <div class="meta-row">
+    <span><b>Scope</b> Pana Global (US onboarding paused since Jun 2026)</span>
+    <span><b>Window</b> 2026 YTD (Jan–Sep 8) vs. full-year 2025</span>
+    <span><b>Pulled</b> Sep 8, 2026</span>
+  </div>
+
+  <section>
+    <div class="verdict-card">
+      <div class="verdict-statement">Healthy at the KYC gate — <em>the real leak is before it even opens.</em></div>
+      <div class="verdict-body">
+        Pana Global clears identity verification at <b>64.3%</b>, near the top of the industry's typical 55–65% completion range — KYC itself is not the problem. The bigger volume loss is upstream: only <b>46.1%</b> of signups ever open a KYC application at all. No published benchmark isolates that exact step, so it's an internal diagnostic for now, not a scored gap.
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-tile">
+          <div class="kpi-label">Signup → Bank approved<br>(Global, 2026 YTD)</div>
+          <div class="kpi-value">29.6%</div>
+          <div class="kpi-sub">2025 full year: 31.1%</div>
+          <span class="chip warn">-1.5pp YoY</span>
+        </div>
+        <div class="kpi-tile">
+          <div class="kpi-label">Signup → Started KYC</div>
+          <div class="kpi-value">46.1%</div>
+          <div class="kpi-sub">~54% never open a KYC app</div>
+          <span class="chip muted">No benchmark</span>
+        </div>
+        <div class="kpi-tile">
+          <div class="kpi-label">KYC completion<br>Started KYC → Approved</div>
+          <div class="kpi-value">64.3%</div>
+          <div class="kpi-sub">Industry range 55–65%</div>
+          <span class="chip good">In line</span>
+        </div>
+        <div class="kpi-tile">
+          <div class="kpi-label">KYC completion, YoY<br>2025 → 2026 YTD</div>
+          <div class="kpi-value">67.2→64.3%</div>
+          <div class="kpi-sub">Still inside industry range</div>
+          <span class="chip warn">-2.9pp YoY</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Where the volume actually goes</h2>
+    <p class="section-sub">Pana Global, 2026 YTD. Absolute users at each stage — the width is the true drop, not a rescaled one.</p>
+    <div class="funnel-chart">
+      <div class="funnel-row">
+        <div><div class="funnel-stage-label">Signups</div><div class="funnel-stage-note">user.createdAt</div></div>
+        <div class="funnel-track"><div class="funnel-fill" style="width:100%;">108,290</div></div>
+        <div class="funnel-figs"><div class="funnel-count">100%</div><div class="funnel-pct">baseline</div></div>
+      </div>
+      <div class="funnel-row">
+        <div><div class="funnel-stage-label">Started KYC</div><div class="funnel-stage-note">Persona application opened</div></div>
+        <div class="funnel-track"><div class="funnel-fill" style="width:46.1%;">49,901</div></div>
+        <div class="funnel-figs"><div class="funnel-count">46.1%</div><div class="funnel-pct">of signups</div></div>
+      </div>
+      <div class="funnel-row">
+        <div><div class="funnel-stage-label">Bank approved</div><div class="funnel-stage-note">bankapplication.status = Approved</div></div>
+        <div class="funnel-track"><div class="funnel-fill" style="width:29.6%;">32,101</div></div>
+        <div class="funnel-figs"><div class="funnel-count">29.6%</div><div class="funnel-pct">of signups</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Stage conversion vs. industry benchmark</h2>
+    <p class="section-sub">Bar = Pana Global's actual conversion rate for that stage. Shaded band = the range reported across fintech/neobank onboarding benchmark sources.</p>
+    <div class="legend-row">
+      <div class="legend-item"><span class="legend-swatch pana"></span>Pana Global, 2026 YTD</div>
+      <div class="legend-item"><span class="legend-swatch industry"></span>Industry benchmark range</div>
+      <div class="legend-item"><span class="legend-swatch nodata"></span>No comparable external metric</div>
+    </div>
+    <div class="bullet-chart">
+
+      <div class="bullet-row">
+        <div class="bullet-head">
+          <div class="bullet-name">Signup <span class="arrow">→</span> Started KYC</div>
+          <div class="bullet-readout">46.1% · no external benchmark</div>
+        </div>
+        <div class="bullet-track">
+          <div class="bullet-bar first" style="width:46.1%;"></div>
+          <div class="bullet-value-label" style="left:calc(46.1% + 8px);">46.1%</div>
+        </div>
+        <div class="bullet-foot">~54% of signups never open a KYC application — the largest raw drop in the funnel, but not something published benchmarks isolate this way. Treat as an internal diagnostic, not a scored comparison.</div>
+      </div>
+
+      <div class="bullet-row">
+        <div class="bullet-head">
+          <div class="bullet-name">Started KYC <span class="arrow">→</span> Approved</div>
+          <div class="bullet-readout">64.3% · industry 55–65%</div>
+        </div>
+        <div class="bullet-track">
+          <div class="bullet-band" style="left:55%; width:10%;"></div>
+          <div class="bullet-bar first" style="width:64.3%;"></div>
+          <div class="bullet-value-label" style="left:calc(64.3% + 8px);">64.3%</div>
+        </div>
+        <div class="bullet-foot">At the top of the reported range. KYC completion itself is not the problem.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">KYC completion, year over year</h2>
+    <p class="section-sub">Started KYC → Approved, Pana Global, full-year comparison.</p>
+    <div class="yoy-wrap">
+      <div class="yoy-bars">
+        <div class="yoy-col">
+          <div class="yoy-bar dim" style="height:126px;"><span class="yoy-bar-val">67.2%</span></div>
+          <div class="yoy-year">2025</div>
+        </div>
+        <div class="yoy-col">
+          <div class="yoy-bar" style="height:120px;"><span class="yoy-bar-val">64.3%</span></div>
+          <div class="yoy-year">2026 YTD</div>
+        </div>
+      </div>
+      <div class="yoy-note"><b>-2.9pp YoY</b> — a slight cooling, but still comfortably inside the 55–65% industry range. Worth watching, not yet a flag.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Sourced benchmark comparison</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Stage</th><th>Definition</th><th>Pana Global 2026 YTD</th><th>Industry benchmark</th><th>Verdict</th><th>Source</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="stage">Signup → Started KYC</td>
+            <td class="def">First KYC application opened after account creation</td>
+            <td class="num">46.1%</td>
+            <td class="num">—</td>
+            <td><span class="chip muted">No benchmark</span></td>
+            <td class="src">No source isolates this exact step</td>
+          </tr>
+          <tr>
+            <td class="stage">Started KYC → Approved</td>
+            <td class="def">Identity verification completed and approved (Persona)</td>
+            <td class="num">64.3%</td>
+            <td class="num">~55–65%</td>
+            <td><span class="chip good">In line</span></td>
+            <td class="src"><a href="https://getperspective.ai/blog/fintech-customer-experience-2026-onboarding-trust-drop-off" target="_blank" rel="noopener">Perspective AI, 2026</a></td>
+          </tr>
+          <tr>
+            <td class="stage">Overall onboarding abandonment</td>
+            <td class="def">Share who never complete onboarding, any stage</td>
+            <td class="num">context only</td>
+            <td class="num">~68% abandon</td>
+            <td><span class="chip muted">Context</span></td>
+            <td class="src"><a href="https://getperspective.ai/blog/fintech-customer-experience-2026-onboarding-trust-drop-off" target="_blank" rel="noopener">Perspective AI (Signicat-sourced)</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="method">
+    <h3>Definitions &amp; data sources — Pana</h3>
+    <ul>
+      <li><b>Signups</b> — <code>user.createdAt</code>, Pana Global (usertype = GLOBAL), signup-month cohort.</li>
+      <li><b>Started KYC / Approved</b> — Persona (Bridge KYC) application events, cross-referenced against <code>bankapplication</code>. Metabase query <code>persona-funnel-flow</code> (Started KYC and Approved steps only — Funded/Active steps excluded from this pass by design).</li>
+      <li><b>Bank approved</b> (volume chart) — <code>bankapplication.status = 'Approved'</code>. Metabase query <code>funnel-3step</code>.</li>
+      <li>Scope stops at approval. Funding/activation metrics are tracked separately and intentionally excluded here to keep this a pure onboarding/KYC read.</li>
+      <li>All figures pulled via BigQuery through the Metabase API, <code>panaapp-16ce3.planetscale_pana</code>, Sep 8, 2026.</li>
+    </ul>
+    <h3>On the external benchmark figures</h3>
+    <ul>
+      <li>Compiled from secondary industry sources (fintech CX/CRO round-ups citing Signicat and neobank activation research), not one primary index — treat ranges as directional, not exact.</li>
+      <li>Definitions vary by source (e.g. "activation" sometimes means first transaction, sometimes 5+ transactions); ranges here were matched to Pana's stage definitions as closely as the source allowed.</li>
+      <li>No external source publishes a clean "signup → started KYC" rate, so that stage is shown for internal diagnostic value only, with no scored verdict.</li>
+    </ul>
+    <div class="sources">
+      <h3>Sources</h3>
+      <ul>
+        <li><a href="https://getperspective.ai/blog/fintech-customer-experience-2026-onboarding-trust-drop-off" target="_blank" rel="noopener">Perspective AI — "Fintech Customer Experience in 2026: Solving Onboarding, Trust, and Drop-Off"</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
