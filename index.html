@@ -474,7 +474,7 @@
     <ul>
       <li>Compiled from secondary industry sources (fintech CX/CRO round-ups citing Signicat and neobank activation research), not one primary index — treat ranges as directional, not exact.</li>
       <li>Definitions vary by source (e.g. "activation" sometimes means first transaction, sometimes 5+ transactions); ranges here were matched to Pana's stage definitions as closely as the source allowed.</li>
-      <li>No external source publishes a clean "signup → started KYC" rate, so that stage is shown for internal diagnostic value only, with no scored verdict.</li>
+      <li>No external source publishes a clean "signup → started KYC" rate, so that stage is shown for internal diagnostic value only, with no scored verdict. Confirmed by a multi-pass check (own research plus independent cross-checks) against Sumsub, Alloy, Persona, Veriff, and Plaid — identity vendors define a technical "start" event (e.g. Veriff's <code>started</code>/7001, Plaid's <code>IDENTITY_VERIFICATION_START_STEP</code>), but their own funnels begin after a verification session is already created, not at account signup. That earlier handoff sits outside what any vendor or industry report measures, so it isn't a gap in this research — it's an industry-wide blind spot.</li>
     </ul>
     <div class="sources">
       <h3>Sources</h3>
